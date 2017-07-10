@@ -107,13 +107,4 @@ class MongoClient(object):
 
 
 if __name__ == '__main__':
-    # coll = NoSQLMongo('localhost', 27017, 'taobao', 'jd_shuid')
-    coll = NoSQLMongo('localhost', 27017, 'taobao', 'tmall')
-
-    _q_kw = {"productAttr": {'$exists': False}}
-    print coll.query(_q_kw).count()
-    # for index, doc in enumerate(coll.query(_q_kw, skip=100 * 10)):
-    #     print index
-
-    # print coll.query(_q_kw, limit=10000).count(True)
-    # print coll.query(_q_kw, skip=10000).count(True)
+    pass
