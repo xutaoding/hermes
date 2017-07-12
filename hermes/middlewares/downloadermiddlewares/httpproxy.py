@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 
+import random
+
 from scrapy import signals
 from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
+
+from ...utils.util import fake_proxy
 
 
 class HermesHttpProxyMiddleware(object):
@@ -26,6 +30,14 @@ class HermesHttpProxyMiddleware(object):
     def process_request(self, request, spider):
         # spider.setting with classmethod from_crawler method crawler.setting is same
         # `SCRAPY_PROXY_IP_KEY` key can get from the `settings` variable
+
+        fake_proxy_list = []
+
+        for _ in range(random.randint(1, 3)):
+            fake_proxy_list.append(fake_proxy())
+
+        request.headers['X-Forwarded-For'] = ','.join(fake_proxy_list)
+
         # redis = getattr(spider, 'redis', None)
 
         # if redis and self.http_proxy_key:
@@ -33,8 +45,8 @@ class HermesHttpProxyMiddleware(object):
         # else:
         #     http_proxy = None
 
-        http_proxy = '114.239.2.44:808'
-        if http_proxy and 'proxy' not in request.meta:
-            request.meta['proxy'] = 'https://' + http_proxy
-
-        print 'dddddd:', request.meta
+        # http_proxy = '114.239.2.44:808'
+        # if http_proxy and 'proxy' not in request.meta:
+        #     request.meta['proxy'] = 'https://' + http_proxy
+        #
+        # print 'dddddd:', request.meta

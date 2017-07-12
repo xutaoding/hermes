@@ -9,7 +9,13 @@ mongo_log = logging.getLogger(__name__)
 
 
 class MongoClient(object):
-    def __init__(self, host='localhost', port=27017, database=None, collection=None, **kwargs):
+    def __init__(self,
+                 host='localhost',
+                 port=27017,
+                 database=None,
+                 collection=None,
+                 **kwargs
+                 ):
         self.host = host
         self.port = port
         self.db = database

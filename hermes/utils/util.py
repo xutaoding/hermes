@@ -4,6 +4,9 @@ import re
 import six
 import os.path
 import hashlib
+import random
+import socket
+import struct
 from random import sample
 from string import letters, digits
 
@@ -98,6 +101,23 @@ def to_bytes(text, encoding=None, errors='strict'):
     if encoding is None:
         encoding = 'utf-8'
     return text.encode(encoding, errors)
+
+
+def fake_proxy():
+    random_ip_pool = ['10.253.110.30/0']
+    str_ip = random_ip_pool[random.randint(0, len(random_ip_pool) - 1)]
+    str_ip_addr = str_ip.split('/')[0]
+    str_ip_mask = str_ip.split('/')[1]
+    ip_addr = struct.unpack('>I'.encode('u8'), socket.inet_aton(str_ip_addr))[0]
+    mask = 0x0
+
+    for i in range(31, 31 - int(str_ip_mask), -1):
+        mask = mask | (1 << i)
+
+    ip_addr_min = ip_addr & (mask & 0xffffffff)
+    ip_addr_max = ip_addr | (~mask & 0xffffffff)
+
+    return socket.inet_ntoa(struct.pack('>I'.encode('u8'), random.randint(ip_addr_min, ip_addr_max)))
 
 
 if __name__ == '__main__':

@@ -1,12 +1,12 @@
 import random
 
-from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
-from defaults import USER_AGENT
+# from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
+from fake_useragent import UserAgent
 
 
 class HermesUserAgentMiddleware(object):
     def __init__(self):
-        self.user_agent = USER_AGENT
+        self.ua = UserAgent()
 
     def process_request(self, request, spider):
         """ `UserAgentMiddleware` class execute order:
@@ -14,9 +14,5 @@ class HermesUserAgentMiddleware(object):
          2.`scrapy.downloadermiddlewares.useragent.UserAgentMiddleware`
             
         """
-        user_agent = random.choice(self.user_agent)
-
-        if user_agent:
-            request.headers.setdefault(b'User-Agent', user_agent)
-
+        request.headers['User-Agent'] = self.ua.random
         # print 'parity user agent:', request.headers

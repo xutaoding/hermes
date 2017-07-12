@@ -10,3 +10,6 @@ tqdm==4.11.0
 django==1.11.3
 celery==4.0.2
 pymongo==3.4.0
+fake-useragent
+
+# pyreBloom  # 参考readme.md中关于该包的安装方法

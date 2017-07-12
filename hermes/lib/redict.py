@@ -5,8 +5,8 @@ import json
 
 import redis
 
-from hermes.settings import config
-from hermes.exceptions import MetaError
+from ..settings import config
+from ..exceptions import MetaError
 
 
 class RedisMetaClass(type):
@@ -20,7 +20,7 @@ class RedisMetaClass(type):
         return super(RedisMetaClass, mcs).__new__(mcs, class_name, bases, namespace)
 
 
-class Base(dict):
+class ReDictBase(dict):
     """ Using Redis hash mapping """
 
     def __init__(self, key):
@@ -39,7 +39,6 @@ class Base(dict):
         except ValueError:
             r_value = json.load(_value)
 
-
     def __setitem__(self, name, value):
         pass
 
@@ -47,14 +46,15 @@ class Base(dict):
         pass
 
     def is_equal(self, obj1, obj2):
-        if isinstance(obj1, str):pass
+        if isinstance(obj1, str):
+            pass
 
 
-class WizardSettings(six.with_metaclass(RedisMetaClass, Base)):
+class WizardSettings(six.with_metaclass(RedisMetaClass, ReDictBase)):
     """ Every spider task settings store to redis """
 
 
-class CrawlerTask(six.with_metaclass(RedisMetaClass, Base)):
+class CrawlerTask(six.with_metaclass(RedisMetaClass, ReDictBase)):
     """ Required all configs and extraction rule to tasks of spider """
 
 

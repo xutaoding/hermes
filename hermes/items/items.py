@@ -10,5 +10,5 @@ import scrapy
 
 class HermesItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    # Due to common crawl-toolkit, Item class could not use.
     pass
