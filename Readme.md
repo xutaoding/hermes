@@ -45,3 +45,30 @@ http://www.hicrawler.com/
 
 国外:
 https://www.import.io/
+
+
+######################################
+基于redis+bloomfilter过滤的python package install:
+
+(1): Install Hiredis:
+
+###### On Mac:
+brew install hiredis
+
+###### With Ubuntu:
+apt-get install libhiredis-dev
+
+###### From source:
+git clone https://github.com/redis/hiredis
+cd hiredis && make && sudo make install
+
+Note that `libhiredis.so.0.13` file, Default location is `/usr/local/lib/libhiredis.so.0.13`, 
+but you ` import pyreBloom` code yield error: 'ImportError: libhiredis.so.0.13: cannot open shared object file: No such file or directory'
+
+Methods: cp /usr/local/lib/libhiredis.so.0.13 /usr/local/lib64/
+
+(2): 可以在虚拟环境或系统环境：
+git@github.com:seomoz/pyreBloom.git
+cd pyreBloom
+pip install -r requirements.txt
+python setup.py install
