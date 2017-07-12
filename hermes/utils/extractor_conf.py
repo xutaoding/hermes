@@ -12,8 +12,24 @@
 
             # Crawler web element settings
             "elements_conf": {
-                "starter_url": "#main-urls > a",
-                "pagination_url": "div.next-pagination > a"
+                "starter_url": "http://item.jd.com",
+                "goto_urls": "#main-urls > a",
+                "pagination": "div.next-pagination > a",
+                meta_field1: field1_css_path,
+                meta_field2: field2_css_path,
+
+                # 深度索要爬取跳转的下一个页面的信息
+                "goto_next":{
+                    "goto_urls": "div.box.item > span > a",
+                    "pagination": "div.next-pagination > a"
+                    meta_field1: field1_css_path,
+                    meta_field2: field2_css_path,
+
+                    # 深度索要爬取跳转的下一个页面的信息
+                    ""goto_next: {
+                        ...
+                    }
+                }
             },
 
             # Login or other Request Headers settings
