@@ -101,17 +101,8 @@ def to_bytes(text, encoding=None, errors='strict'):
 
 
 if __name__ == '__main__':
-    from bson import ObjectId
-    from parity_platform.lib.mongo import NoSQLMongo
-
-    q_kw = ObjectId("58f85a15a86f9819fd6062c8")
-    mongo = NoSQLMongo(database='taobao', collection='tmall')
-
-    obj = mongo.get(q_kw)
-    good_name, brand, keyword, category_list, sku_attr_list = obj['name'], obj['brand'], obj['kw'], \
-                                                              obj['cat'], obj['sku'],
-
-    for v, p in combinations(good_name, brand, keyword, category_list, sku_attr_list):
-        print p, v
+    m5 = md5('12345')
+    print m5
+    print len(m5)
 
 
