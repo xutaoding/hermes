@@ -12,21 +12,22 @@
 
             # Crawler web element settings
             "elements_conf": {
-                "starter_url": "http://item.jd.com",
-                "goto_urls": "#main-urls > a",
-                "pagination": "div.next-pagination > a",
-                meta_field1: field1_css_path,
-                meta_field2: field2_css_path,
+                "starter_urls": ["http://item.jd.com"],
 
-                # 深度索要爬取跳转的下一个页面的信息
+                "goto_urls": "[#main-urls > a",],              # 从该页面的所要跳转到下一个页面的链接
+                "pagination": ["div.next-pagination > a",],    # 该页面的翻页链接
+                meta_field1: [field1_css_path, ],
+                meta_field2: [field2_css_path, ],
+
+                # 上一个页面经跳转链接(goto_urls)到该页面的信息
                 "goto_next":{
-                    "goto_urls": "div.box.item > span > a",
-                    "pagination": "div.next-pagination > a"
-                    meta_field1: field1_css_path,
-                    meta_field2: field2_css_path,
+                    "goto_urls": ["div.box.item > span > a",],     # 从该页面的所要跳转到下一个页面的链接
+                    "pagination": ["div.next-pagination > a",]，   # 该页面的翻页链接
+                    meta_field1: [field1_css_path, ],
+                    meta_field2: [field2_css_path, ],
 
-                    # 深度索要爬取跳转的下一个页面的信息
-                    ""goto_next: {
+                    # 上一个页面经跳转链接(goto_urls)到该页面的信息
+                    "goto_next": {
                         ...
                     }
                 }

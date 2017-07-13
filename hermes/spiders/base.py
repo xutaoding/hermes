@@ -9,7 +9,7 @@ from ..exceptions import (
 from ..settings import config
 
 
-class RedisMetaClass(type):
+class ScrapyMetaClass(type):
     def __new__(mcs, class_name, bases, namespace):
         if hasattr(namespace, 'redis'):
             raise MetaError("Create Spider class don't exist redis attribute.")
@@ -18,8 +18,9 @@ class RedisMetaClass(type):
         namespace['start_urls_key'] = config.START_URLS_KEY
 
         mongo_conf_db = MongoClient(**config.MONGO_CONF['conf_table'])
-        spider_class = super(RedisMetaClass, mcs).__new__(mcs, class_name, bases, namespace)
+        spider_class = super(ScrapyMetaClass, mcs).__new__(mcs, class_name, bases, namespace)
         spider_class.mongo_conf_db = mongo_conf_db
 
         return spider_class
+
 
