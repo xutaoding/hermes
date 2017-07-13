@@ -38,16 +38,21 @@ class WizardSpider(six.with_metaclass(ScrapyMetaClass, scrapy.Spider)):
     def start_requests(self):
         """ Obtain args from commandline argument or from DB to launch spider """
 
+        qw_start_urls = {'job_idf': self.job_idf}
         elements_conf = self.spider_conf.pop('elements_conf', {})
         request_conf = self.spider_conf.pop('request_conf', {})
 
         cookies_str = request_conf.pop('Cookie', '') or request_conf.pop('cookie', '')
         cookies = self.get_cookies(cookies_str=cookies_str)
 
-        starter_urls = elements_conf.pop('starter_urls', [])
         meta = {'elements_conf': elements_conf}
 
-        for url in starter_urls:
+        for doc in self.start_urls_db.query(qw_start_urls):
+            url = doc.get('start_url')
+
+            if url is None:
+                continue
+
             yield scrapy.Request(url, meta=meta, headers=request_conf, cookies=cookies)
 
     @classmethod

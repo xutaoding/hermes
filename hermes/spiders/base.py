@@ -16,8 +16,9 @@ class ScrapyMetaClass(type):
 
         namespace['redis'] = StrictRedis(**config.REDIS_CONFIG)
         namespace['start_urls_key'] = config.START_URLS_KEY
+        namespace['start_urls_db'] = MongoClient(**config.MONGO_CONF['scrapy_start_urls'])
 
-        mongo_conf_db = MongoClient(**config.MONGO_CONF['conf_table'])
+        mongo_conf_db = MongoClient(**config.MONGO_CONF['scrapy_conf'])
         spider_class = super(ScrapyMetaClass, mcs).__new__(mcs, class_name, bases, namespace)
         spider_class.mongo_conf_db = mongo_conf_db
 

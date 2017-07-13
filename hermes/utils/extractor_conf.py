@@ -12,8 +12,6 @@
 
             # Crawler web element settings
             "elements_conf": {
-                "starter_urls": ["http://item.jd.com"],
-
                 "goto_urls": "[#main-urls > a",],              # 从该页面的所要跳转到下一个页面的链接
                 "pagination": ["div.next-pagination > a",],    # 该页面的翻页链接
                 meta_field1: [field1_css_path, ],
