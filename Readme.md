@@ -72,3 +72,10 @@ git@github.com:seomoz/pyreBloom.git
 cd pyreBloom
 pip install -r requirements.txt
 python setup.py install
+
+######
+Relate dProject:
+
+(1): apollo
+
+(2): elastic_jobs
