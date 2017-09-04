@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-REDIS_CONFIG = {
-    'host': '127.0.0.1',
-    'port': 6379,
-    'password': '',
-    'db': 0
-}
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+REDIS_PASSWORD = ''
+REDIS_BF_DB = 1
 
 SETTINGS_KEY = 'settings:{}'
 START_URLS_KEY = 'start_urls:{}'

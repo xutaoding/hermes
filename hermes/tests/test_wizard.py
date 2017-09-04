@@ -18,4 +18,13 @@ def test_waizard_spider():
 
 
 if __name__ == '__main__':
-    pass
+    from hermes.middlewares.downloadermiddlewares.defaults import USER_AGENT
+
+    user_agent = {}
+
+    for key, values in USER_AGENT.iteritems():
+        # user_agent[key] = set(values)
+
+        print key
+        print ',\n'.join(['"%s"' % s for s in set(values)])
+        print '\n\n'

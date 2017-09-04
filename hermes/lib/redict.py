@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import six
 import json
 
 import redis
+import six
 
+from hermes.utils.exceptions import MetaError
 from ..settings import config
-from ..exceptions import MetaError
 
 
 class RedisMetaClass(type):

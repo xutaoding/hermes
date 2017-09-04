@@ -2,10 +2,10 @@
 
 from redis import StrictRedis
 
-from ..lib.mongo import MongoClient
-from ..exceptions import (
+from hermes.utils.exceptions import (
     MetaError
 )
+from ..lib.mongo import MongoClient
 from ..settings import config
 
 

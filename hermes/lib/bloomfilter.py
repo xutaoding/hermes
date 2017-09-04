@@ -20,10 +20,10 @@ class BloomFilter(object):
                  key=BF_REDIS_KEY,
                  capacity=CAPACITY,
                  error=ERROR_RATE,
-                 host=config.REDIS_CONFIG['host'],
-                 port=config.REDIS_CONFIG['port'],
-                 password=config.REDIS_CONFIG.get('password', ''),
-                 db=config.REDIS_CONFIG['db']
+                 host=config.REDIS_HOST,
+                 port=config.REDIS_PORT,
+                 password=config.REDIS_PASSWORD,
+                 db=config.REDIS_BF_DB
                  ):
         self.bloom = pyreBloom.pyreBloom(
             key=key,
